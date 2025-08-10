@@ -1,39 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import { AnimatePresence } from "framer-motion";
+import { Hero } from "./components/Hero";
+import { Preloader } from "./components/Preloader";
+import "./index.css";
 
-
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [ready, setReady] = useState(false);
+  const delay = (ms) => {
+    return new Promise((r) => setTimeout(r, ms));
+  }
+  useEffect(() => {
+    // Wait for fonts so the hero renders with the correct typeface
+    let alive = true;
+    (async () => {
+      try { 
+        const fontsReady = document.fonts?.ready ?? Promise.resolve();
+        await Promise.all([fontsReady, delay(700)]); 
+      } catch {
+        console.log('failed')
+      }
+      // Minimum splash time is inside Preloader (duration)
+      if(alive) setReady(true);
+    })();
+    return () => { alive = false; };
+  }, []);
 
   return (
     <>
-      <div className="p-8 bg-rose-500 text-white rounded-xl">
-        Tailwind v4 is working 🎉
-      </div>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <AnimatePresence>
+        {!ready && <Preloader onDone={() => {}} duration={900} />}
 
-export default App
+        </AnimatePresence>
+      {ready && <Hero />}
+    </>
+  );
+}
