@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { Hero } from "./components/Hero";
 import { Preloader } from "./components/Preloader";
+import { Navbar } from "./components/Navbar";
 import "./index.css";
 
 export default function App() {
@@ -15,7 +16,7 @@ export default function App() {
     (async () => {
       try { 
         const fontsReady = document.fonts?.ready ?? Promise.resolve();
-        await Promise.all([fontsReady, delay(700)]); 
+        await Promise.all([fontsReady, delay(3000)]); 
       } catch {
         console.log('failed')
       }
@@ -27,6 +28,7 @@ export default function App() {
 
   return (
     <>
+      <Navbar/>
       <AnimatePresence>
         {!ready && <Preloader onDone={() => {}} duration={900} />}
 

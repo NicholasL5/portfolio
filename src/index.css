@@ -4,8 +4,9 @@
 @theme {
   --font-sans: "Space Grotesk", ui-sans-serif, system-ui, -apple-system,
                "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-  --color-bg: #0b0c10;
-  --color-fg: #e6e7eb;
+  --color-bg: #e6e7eb;
+  --color-fg: #0b0c10;
+  --color-herofg: #F2EEE9;
 }
 
 @layer base {
