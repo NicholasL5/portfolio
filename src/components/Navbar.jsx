@@ -1,5 +1,6 @@
 import { useState } from "react";
-import fallbackLogo from "../assets/mylogo.png";
+import fallbackLogo from "../assets/mylogo-gray.png";
+import { MenuDrawer } from "./MenuDrawer";
 
 export function Navbar({ logoSrc }) {
   const [open, setOpen] = useState(false);
@@ -7,10 +8,8 @@ export function Navbar({ logoSrc }) {
 
   return (
     <nav className="fixed inset-x-0 top-0 z-40">
-      {/* taller bar */}
       <div className="h-20 md:h-24 bg-transparent">
         <div className="relative h-full">
-          {/* Logo bigger */}
           <a
             href="/"
             className="absolute left-[7%] top-1/2 -translate-y-1/2 inline-flex items-center gap-2"
@@ -39,23 +38,26 @@ export function Navbar({ logoSrc }) {
           >
             {/* bars */}
             <span
-              className={`absolute block h-[3px] md:h-1 w-8 md:w-9 rounded bg-fg 
+              className={`absolute block h-[3px] md:h-1 w-8 md:w-9 rounded bg-bg 
                 will-change-transform transition-transform ease-out duration-500 
                 ${open ? "translate-y-0 rotate-45" : "-translate-y-3"
               }`}
             />
             <span
-              className={`absolute block h-[3px] md:h-1 w-8 md:w-9 rounded bg-fg transition-opacity ${
+              className={`absolute block h-[3px] md:h-1 w-8 md:w-9 rounded bg-bg transition-opacity ${
                 open ? "opacity-0" : "opacity-100"
               }`}
             />
             <span
-              className={`absolute block h-[3px] md:h-1 w-8 md:w-9 rounded bg-fg 
+              className={`absolute block h-[3px] md:h-1 w-8 md:w-9 rounded bg-bg 
                 will-change-transform transition-transform ease-out duration-500 delay-75 
                 ${open ? "translate-y-0 -rotate-45" : "translate-y-3"
               }`}
             />
           </button>
+
+          <MenuDrawer open={open} onClose={() => setOpen(false)} />
+
         </div>
       </div>
     </nav>

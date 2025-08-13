@@ -32,7 +32,7 @@ export default function App() {
       <AnimatePresence>
         {!ready && <Preloader onDone={() => {}} duration={900} />}
 
-        </AnimatePresence>
+      </AnimatePresence>
       {ready && <Hero />}
     </>
   );
