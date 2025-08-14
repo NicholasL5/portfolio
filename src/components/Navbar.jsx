@@ -22,7 +22,6 @@ export function Navbar({ logoSrc }) {
             />
           </a>
 
-          {/* Hamburger bigger, positioned ~70% from left on sm+ */}
           <button
             type="button"
             aria-label="Menu"

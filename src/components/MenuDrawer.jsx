@@ -1,7 +1,6 @@
 // components/MenuDrawer.jsx
 import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import menubg from "../assets/menus.png"
 
 const backdrop = {
   hidden: { opacity: 0 },
@@ -38,7 +37,6 @@ export function MenuDrawer({ open, onClose }) {
     <AnimatePresence>
       {open && (
         <>
-          {/* Backdrop */}
           <motion.button
             aria-label="Close menu"
             onClick={onClose}
@@ -46,19 +44,12 @@ export function MenuDrawer({ open, onClose }) {
             initial="hidden" animate="visible" exit="exit" variants={backdrop}
           />
 
-          {/* Panel */}
           <motion.aside
             role="dialog" aria-modal="true" aria-labelledby="menu-heading"
             className="fixed right-0 top-0 bottom-0 z-50 w-[min(88vw,420px)] sm:w-[min(64vw,520px)]"
             initial="hidden" animate="visible" exit="exit" variants={panel}
           >
             <div className="relative h-full overflow-hidden bg-neutral-900 text-white">
-              {/* Trapezoid image background */}
-              <img
-                src={menubg} alt=""
-                aria-hidden
-                className="absolute inset-0 h-full w-full object-cover object-right"
-              />
               <div className="absolute inset-0 bg-black/20" />
 
               {/* Content */}
